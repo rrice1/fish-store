@@ -4,7 +4,7 @@
 
 //Load fish
 $.get('../db/fishes.json')
-.done(()=> {
+.done((data)=> {
     console.log(data);
 })
 .fail((error) =>{
