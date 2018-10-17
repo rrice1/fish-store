@@ -5,7 +5,7 @@
 const writeFishes = (arrayOfFishes) => {
     let newString = '';
 arrayOfFishes.forEach((fish) => {
-    newString += `            <div class="${fish.onSale ? 'on-sale' : ''} fish card col-md-6 col-md-offset-3">
+    newString += `<div class="${fish.onSale ? 'on-sale' : ''} fish card col-md-6 col-md-offset-3">
     <div class="thumbnail">
         <img src="${fish.imageSoure}" alt="" width="40%">
         <div class="caption">
@@ -23,10 +23,7 @@ arrayOfFishes.forEach((fish) => {
 // Write to the available div
 $("#available").append(newString);
 
-bindEvents();
 }
-
-const bindEvents = () => {
     $("body").on('click', 'button.add',(e)=>{
         const fishToMove = $(e.target).closest('.fish'); //adding the $() makes it work in IE
         $("#snagged").append(fishToMove); //append is not copying and pasting, it's cut and paste
@@ -37,7 +34,10 @@ const bindEvents = () => {
         $("#available").append(fishToMove); //append is not copying and pasting, it's cut and paste
         $(e.target).text('Add To Basket').addClass('add').removeClass('remove');
         });
-}
+
+        $("#show-sale").click(()=>{
+            $(".fish").not(".on-sale").toggle();
+        })
 
 //Load fish
 $.get('../db/fishes.json')
