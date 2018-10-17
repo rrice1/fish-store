@@ -22,8 +22,17 @@ arrayOfFishes.forEach((fish) => {
 });
 // Write to the available div
 $("#available").append(newString);
+
+bindEvents();
 }
 
+const bindEvents = () => {
+    $(".add").on('click',(e)=>{
+        const fishToMove = $(e.target).closest('.fish'); //adding the $() makes it work in IE
+        $("#snagged").append(fishToMove); //append is not copying and pasting, it's cut and paste
+        $(e.target).text('Remove from Basket').addClass('remove').removeClass('add');
+        });
+}
 
 //Load fish
 $.get('../db/fishes.json')
@@ -34,4 +43,3 @@ $.get('../db/fishes.json')
 .fail((error) =>{
     console.error({error});
 });
-
