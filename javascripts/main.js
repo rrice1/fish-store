@@ -37,7 +37,14 @@ $("#available").append(newString);
 
         $("#show-sale").click(()=>{
             $(".fish").not(".on-sale").toggle();
-        })
+            $("#show-sale").text((i, text)=>{
+                if(text === "Show Sale Fish") {
+                    return "Show All";
+                } else {
+                    return "Show Sale Fish";
+                }
+            });
+        });
 
 //Load fish
 $.get('../db/fishes.json')
